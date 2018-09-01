@@ -11,3 +11,10 @@ class Account(object):
 
     def create_transaction(self, party, amount, total_amount, date, type):
         self.transactions.append(Transaction(party=party, amount=amount, total_amount=total_amount, date=date, type=type))
+
+    def get_total(self):
+        total_amount = 0
+        for transaction in self.transactions:
+            total_amount += transaction.amount
+
+        print(total_amount)

@@ -41,8 +41,11 @@ class Controller(object):
         for transaction in self.account.transactions:
             print(transaction.party, transaction.amount, transaction.date)
 
+        self.account.get_total()
 
 if __name__ == '__main__':
     app = Controller()
     app.run(data)
+
+
 
