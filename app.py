@@ -2,23 +2,26 @@ from Account import Account
 
 
 data = [
-    {'Party': 'Justin',
-     'Amount': 599.99,
-     'Total Amount': 599.99,
-     'Date': '08-02-28',
-     'Type': 'ORDER',
+    {'PARTY': 'Justin',
+     'AMOUNT': 599.99,
+     'TOTAL_AMOUNT': 599.99,
+     'FIRST_COST': 199.99,
+     'DATE': '08-02-28',
+     'TYPE': 'ORDER',
      },
-    {'Party': 'Jace',
-     'Amount': 499.99,
-     'Total Amount': 599.99,
-     'Date': '08-02-28',
-     'Type': 'ORDER',
+    {'PARTY': 'Justin',
+     'AMOUNT': 599.99,
+     'TOTAL_AMOUNT': 599.99,
+     'FIRST_COST': 199.99,
+     'DATE': '08-02-28',
+     'TYPE': 'ORDER',
      },
-    {'Party': 'Spencer',
-     'Amount': 599.99,
-     'Total Amount': 99.99,
-     'Date': '08-02-28',
-     'Type': 'ORDER',
+    {'PARTY': 'Justin',
+     'AMOUNT': 599.99,
+     'TOTAL_AMOUNT': 599.99,
+     'FIRST_COST': 199.99,
+     'DATE': '08-02-28',
+     'TYPE': 'ORDER',
      },
 ]
 
@@ -31,17 +34,17 @@ class Controller(object):
     def run(self, data):
         for transaction in data:
             self.account.create_transaction(
-                transaction['Party'],
-                transaction['Amount'],
-                transaction['Total Amount'],
-                transaction['Date'],
-                transaction['Type'],
+                party=transaction['PARTY'],
+                amount=transaction['AMOUNT'],
+                total_amount=transaction['TOTAL_AMOUNT'],
+                date=transaction['DATE'],
+                type=transaction['TYPE'],
+                first_cost=transaction['FIRST_COST']
             )
 
         for transaction in self.account.transactions:
             print(transaction.party, transaction.amount, transaction.date)
 
-        self.account.get_total()
 
 if __name__ == '__main__':
     app = Controller()
