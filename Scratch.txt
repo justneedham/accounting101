@@ -1,19 +1,24 @@
 Accounting Software
 
-Account Balances:
-
-
-
-
 Transactions:
 
-Account / category
-Name / Vendor
-Amount (total)
-Amount (received)
-
-Time of transaction
+Amount
+Total Amount
 Location
+date
+type
+party
+status
+entries
+
+
+Journal Entries:
+
+Date
+Type (Debit or Credit)
+Account
+Amount
+
 
 
 Sample transaction:
@@ -42,4 +47,3 @@ Book (COGS) 200
 
 Cash 250
     A/R 250
-
