@@ -1,0 +1,45 @@
+Accounting Software
+
+Account Balances:
+
+
+
+
+Transactions:
+
+Account / category
+Name / Vendor
+Amount (total)
+Amount (received)
+
+Time of transaction
+Location
+
+
+Sample transaction:
+
+Book (INV) 200
+    Cash        200
+
+    OR
+
+Book (INV) 200
+    Cash        150
+    A/P         50
+
+
+01/01/2018
+
+Cash 250
+A/R 250
+    Revenue 500
+
+Book (COGS) 200
+    Book (INV) 200
+
+
+01/12/2018
+
+Cash 250
+    A/R 250
+
