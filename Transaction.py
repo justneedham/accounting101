@@ -24,20 +24,35 @@ class Transaction(object):
                 Entry(
                     type='CREDIT',
                     amount=self.amount - (self.amount * self.sales_tax_rate),
-                    account='REV',
+                    account='REVENUE',
+                    date=self.date
+                ),
+                Entry(
+                    type='DEBIT',
+                    amount=self.first_cost,
+                    account='INVENTORY',
+                    date=self.date
+                ),
+                Entry(
+                    type='DEBIT',
+                    amount=self.amount * self.sales_tax_rate,
+                    account='SALES_TAX',
                     date=self.date
                 ),
                 Entry(
                     type='CREDIT',
+                    amount=self.first_cost,
+                    account='COST_OF_GOODS_SOLD',
+                    date=self.date
                 )
             ))
             self.balance_sheet_entries.extend((
-
-            ))
-
-
-
-            self.entries.extend((
+                Entry(
+                    type='CREDIT',
+                    amount=self.first_cost,
+                    account='INVENTORY',
+                    date=self.date
+                ),
                 Entry(
                     type='DEBIT',
                     amount=self.amount,
@@ -46,11 +61,13 @@ class Transaction(object):
                 ),
                 Entry(
                     type='DEBIT',
-                    amount=self.first_cost,
-                    account='COGS',
+                    amount=self.total_amount - self.amount,
+                    account='ACCOUNTS_RECEIVABLE',
                     date=self.date
-                ))
-            )
+                )
+            ))
+
+
 
 
 
