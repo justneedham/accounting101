@@ -6,5 +6,5 @@ class Entry(object):
         self.type = type
         self.amount = amount
         self.account_id = account
-        self.data = date
+        self.date = date
 
