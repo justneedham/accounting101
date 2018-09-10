@@ -9,8 +9,16 @@ class Account(object):
         self.inventory = 0
         self.transactions = list()
 
-    def create_transaction(self, party, amount, total_amount, date, type):
-        self.transactions.append(Transaction(party=party, amount=amount, total_amount=total_amount, date=date, type=type))
+    def create_transaction(self, **kwargs):
+        self.transactions.append(
+            Transaction(
+                party=kwargs['party'],
+                amount=kwargs['amount'],
+                total_amount=kwargs['total_amount'],
+                date=kwargs['date'],
+                type=kwargs['type'],
+                first_cost=kwargs['first_cost'],
+            ))
 
     def get_total(self):
         total_amount = 0
