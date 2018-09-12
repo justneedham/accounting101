@@ -48,12 +48,15 @@ data = [
     Entry(type="CREDIT", amount=80.00, account="CASH", date="03-28-18"),
 ]
 
-
-
-# functions for Income Statement
-
+company_name = "Alexandria / Sebastian Wolf Suits"
 tax_rate = .35
+beginning_cash_bal = 10298.45
+beginning_ar_bal = 0
+beginning_inv_bal_sws = 0
+beginning_inv_bal_alex = 0
+beginning_ap_bal = 0
 
+# Functions for Income Statement
 
 def total_debs_and_creds():
 
@@ -110,6 +113,7 @@ def total_admin_exp():
 
 
 def income_taxes():
+
     income_tax_owed = (tax_rate * income_before_taxes)
     return income_tax_owed
 
@@ -120,55 +124,131 @@ def net_income():
     return net_income
 
 
-
 gross_margin = total_sales_rev() - total_cogs()
 income_before_taxes = gross_margin - total_admin_exp()
 
+def print_income_statement():
+
+    gross_margin = total_sales_rev() - total_cogs()
+    income_before_taxes = gross_margin - total_admin_exp()
+
+    print("2018 First Quarter Income Statement for {}".format(company_name))
+    print("")
+
+    print("Sales Revenue:       ${}".format(total_sales_rev()))
+
+    print("Cost of Goods Sold:  ${}".format(total_cogs()))
+
+    print("Gross Margin:        ${}".format(gross_margin))
+
+    print ("Admin Expenses:      ${}".format(total_admin_exp()))
+
+    print("Income Before Taxes: ${}".format(income_before_taxes))
+
+    print("Income Taxes:        ${}".format(income_taxes()))
+
+    print("Net Income:          ${}".format(net_income()))
 
 
-print(total_debs_and_creds())
+#Functions for Balance Sheet
+
+def cash():
+    change_in_cash = 0
+
+    for entry in data:
+        if entry.type == "DEBIT" and entry.account_id == "CASH":
+            change_in_cash += entry.amount
+        if entry.type == "CREDIT" and entry.account_id == "CASH":
+            change_in_cash -= entry.amount
+
+    ending_cash_bal = change_in_cash + beginning_cash_bal
+    return ending_cash_bal
+
+
+def accounts_receivable():
+
+    change_in_ar = 0
+
+    for entry in data:
+        if entry.type == "DEBIT" and entry.account_id == "A/R":
+            change_in_ar += entry.amount
+        if entry.type == "CREDIT" and entry.account_id == "A/R":
+            change_in_ar -= entry.amount
+
+    ending_ar_bal = change_in_ar + beginning_ar_bal
+
+    return ending_ar_bal
+
+
+def inventory_sws():
+    change_in_inv_sws = 0
+
+    for entry in data:
+        if entry.type == "DEBIT" and entry.account_id == "INV (SWS)":
+            change_in_inv_sws += entry.amount
+        if entry.type == "CREDIT" and entry.account_id == "INV (SWS)":
+            change_in_inv_sws -= entry.amount
+
+    ending_inv_bal_sws = change_in_inv_sws + beginning_inv_bal_sws
+
+    return ending_inv_bal_sws
+
+
+def inventory_alex():
+    change_in_inv_alex = 0
+
+    for entry in data:
+        if entry.type == "DEBIT" and entry.account_id == "INV (BOOKS)":
+            change_in_inv_alex += entry.amount
+        if entry.type == "CREDIT" and entry.account_id == "INV (BOOKS)":
+            change_in_inv_alex -= entry.amount
+
+    ending_inv_bal_alex = change_in_inv_alex + beginning_inv_bal_alex
+
+    return ending_inv_bal_alex
+
+
+def accounts_payable():
+    change_in_ap = 0
+
+    for entry in data:
+        if entry.type == "CREDIT" and entry.account_id == "A/P":
+            change_in_ap += entry.amount
+        if entry.type == "DEBIT" and entry.account_id == "A/P":
+            change_in_ap -= entry.amount
+
+    ending_ap_bal = change_in_ap + beginning_ap_bal
+
+    return ending_ap_bal
+
+def print_balance_sheet():
+    total_assets = cash() + accounts_receivable() + inventory_sws() + inventory_alex()
+    print(company_name)
+    print("Balance Sheet for the year ending 2018")
+    print("")
+    print("Current Assets")
+    print("Cash:                ${}".format(cash()))
+    print("A/R:                 ${}".format(accounts_receivable()))
+    print("Inventory (SWS):     ${}".format(inventory_sws()))
+    print("Inventory (Alex)     ${}".format(inventory_alex()))
+    print("Total Assets:        ${}".format(total_assets))
+    print("")
+    print("Current Liabilities")
+    print("Accounts Payable:    ${}".format(accounts_payable()))
+    print("")
+    print ("Owners Equity")
+    print("------------------------------")
+
+
+
+
+print("Total debits are credits equal: {}".format(total_debs_and_creds()))
 print("")
 
-print("Sales Revenue:       ${}".format(total_sales_rev()))
+print("Here is the first quarter income statement: ")
+print("")
 
-print("Cost of Goods Sold:  ${}".format(total_cogs()))
+print_income_statement()
+print("")
 
-
-print("Gross Margin:        ${}".format(gross_margin))
-
-print ("Admin Expenses:      ${}".format(total_admin_exp()))
-
-print("Income Before Taxes: ${}".format(income_before_taxes))
-
-print("Income Taxes:        ${}".format(income_taxes()))
-
-print("Net Income:          ${}".format(net_income()))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print_balance_sheet()
