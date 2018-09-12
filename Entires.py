@@ -48,15 +48,18 @@ data = [
     Entry(type="CREDIT", amount=80.00, account="CASH", date="03-28-18"),
 ]
 
-company_name = "Alexandria / Sebastian Wolf Suits"
+
+company_name = "Alexandria / Sebastian Wolf Suits Consolidated"
 tax_rate = .35
 beginning_cash_bal = 10298.45
 beginning_ar_bal = 0
 beginning_inv_bal_sws = 0
 beginning_inv_bal_alex = 0
 beginning_ap_bal = 0
+beginning_retained_earnings = 12122.45
 
 # Functions for Income Statement
+
 
 def total_debs_and_creds():
 
@@ -133,7 +136,7 @@ def print_income_statement():
     income_before_taxes = gross_margin - total_admin_exp()
 
     print("2018 First Quarter Income Statement for {}".format(company_name))
-    print("")
+    print("------------------------------")
 
     print("Sales Revenue:       ${}".format(total_sales_rev()))
 
@@ -148,6 +151,7 @@ def print_income_statement():
     print("Income Taxes:        ${}".format(income_taxes()))
 
     print("Net Income:          ${}".format(net_income()))
+    print("------------------------------")
 
 
 #Functions for Balance Sheet
@@ -221,11 +225,20 @@ def accounts_payable():
 
     return ending_ap_bal
 
+
+def retained_earnings():
+
+    return beginning_retained_earnings
+
+
 def print_balance_sheet():
     total_assets = cash() + accounts_receivable() + inventory_sws() + inventory_alex()
+    total_liabilities = accounts_payable()
+    total_equity = retained_earnings()
+    total_liabilities_and_equity = total_liabilities + total_equity
     print(company_name)
     print("Balance Sheet for the year ending 2018")
-    print("")
+    print("------------------------------")
     print("Current Assets")
     print("Cash:                ${}".format(cash()))
     print("A/R:                 ${}".format(accounts_receivable()))
@@ -237,6 +250,9 @@ def print_balance_sheet():
     print("Accounts Payable:    ${}".format(accounts_payable()))
     print("")
     print ("Owners Equity")
+    print("Retained Earnings:   ${}".format(retained_earnings()))
+    print("")
+    print("liabilities/equity:  ${}".format(total_liabilities_and_equity))
     print("------------------------------")
 
 
